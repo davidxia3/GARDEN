@@ -1,0 +1,34 @@
+import os
+
+def rename(folder_path):
+    files = os.listdir(folder_path)
+    
+    root, species, status = folder_path.split("/")
+    index = 0
+    
+    for file_name in files:
+        new_file_name = f"{species}_{status}_{index}{os.path.splitext(file_name)[1]}"
+        
+        old_file_path = os.path.join(folder_path, file_name)
+        new_file_path = os.path.join(folder_path, new_file_name)
+        
+        os.rename(old_file_path, new_file_path)
+        
+        index += 1
+
+def get_leaf_folders(root_folder):
+    leaf_folders = []
+    
+    for root, dirs, files in os.walk(root_folder):
+        if not dirs:
+            leaf_folders.append(root)
+    
+    return leaf_folders
+
+
+root_folder = 'raw_data'
+leaf_folders = get_leaf_folders(root_folder)
+print("Folders with no children folders:")
+for folder in leaf_folders:
+    print(folder)
+    rename(folder)
