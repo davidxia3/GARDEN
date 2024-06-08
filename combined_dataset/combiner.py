@@ -16,3 +16,6 @@ def copy_jpg_files(src_folder, dst_folder):
 src_folder = 'preprocessing'
 dst_folder = 'combined_dataset/images'
 copy_jpg_files(src_folder, dst_folder)
+src_folder = 'augmentations'
+copy_jpg_files(src_folder, dst_folder)
+
