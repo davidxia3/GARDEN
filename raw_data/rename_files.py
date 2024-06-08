@@ -3,9 +3,12 @@ import os
 def rename(folder_path):
     files = os.listdir(folder_path)
     
-    root, species, status = folder_path.split("/")
-    index = 0
+    # Get the last two components of the path for species and status
+    path_components = folder_path.split(os.sep)
+    species = path_components[-2] if len(path_components) > 1 else ''
+    status = path_components[-1] if len(path_components) > 0 else ''
     
+    index = 0
     for file_name in files:
         new_file_name = f"{species}_{status}_{index}{os.path.splitext(file_name)[1]}"
         
@@ -24,7 +27,6 @@ def get_leaf_folders(root_folder):
             leaf_folders.append(root)
     
     return leaf_folders
-
 
 root_folder = 'raw_data'
 leaf_folders = get_leaf_folders(root_folder)

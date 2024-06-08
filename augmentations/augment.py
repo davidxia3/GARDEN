@@ -90,3 +90,4 @@ for folder in leaf_folders:
     relative_path = os.path.relpath(folder, root_folder)
     output_path = os.path.join(output_base_folder, relative_path)
     augment_and_save_images(folder, output_path)
+
