@@ -34,6 +34,6 @@ source_folders = augmentation_folders + preprocessing_folders
 
 destination_folder = 'manual_segmentation/images'
 
-num_images_to_sample = 25
+num_images_to_sample = 15
 
 copy_random_images(source_folders, destination_folder, num_images_to_sample)

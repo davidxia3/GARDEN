@@ -30,8 +30,8 @@ augmentations = [
     ("GridDistortion", A.GridDistortion(p=0.2, distort_limit=0.3)),
     ("ElasticTransform", A.ElasticTransform(p=0.2, alpha=120, sigma=120 * 0.05, alpha_affine=120 * 0.03)),
     ("OpticalDistortion", A.OpticalDistortion(p=0.2, distort_limit=0.3, shift_limit=0.3)),
-    ("RandomSizedCrop", A.RandomSizedCrop(p=0.2, min_max_height=(100, 200), height=256, width=256)),
-    ("RandomResizedCrop", A.RandomResizedCrop(p=0.2, height=256, width=256, scale=(0.8, 1.0))),
+    # ("RandomSizedCrop", A.RandomSizedCrop(p=0.2, min_max_height=(100, 200), height=256, width=256)),
+    # ("RandomResizedCrop", A.RandomResizedCrop(p=0.2, height=256, width=256, scale=(0.8, 1.0))),
     ("Resize", A.Resize(height=256, width=256)),
     # ("Normalize", A.Normalize(mean=(0.485, 0.456, 0.406), std=(0.029, 0.024, 0.025))),
 ]
