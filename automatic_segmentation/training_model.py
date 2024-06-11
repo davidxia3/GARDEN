@@ -94,7 +94,7 @@ IMG_CHANNELS = image_dataset.shape[3]
 input_shape = (IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
 
 model = build_unet(input_shape, n_classes=1)
-model.compile(optimizer=Adam(learning_rate=1e-3), loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=Adam(learning_rate=1e-5), loss='binary_crossentropy', metrics=['accuracy'])
 model.summary()
 
 history = model.fit(X_train, y_train, 
@@ -104,7 +104,7 @@ history = model.fit(X_train, y_train,
                     validation_data=(X_test, y_test), 
                     shuffle=False)
 
-model.save('automatic_segmentation/v1.hdf5')
+model.save('automatic_segmentation/v2_lr_1e-5.hdf5')
 
 loss = history.history['loss']
 val_loss = history.history['val_loss']
