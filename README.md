@@ -1,5 +1,4 @@
-<!-- Place this at the top of your Markdown file -->
+<!-- XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX -->
 
-<!-- Replace "project_title_image.png" with the actual filename of your image -->
-<img src="project_title_image.png" alt="Project Title" style="display: block; margin: auto; width: 100%;">
-
+<img src="SPINACH/SPINACH_project_title_image.png" alt="Project Title" style="display: block; margin: auto; width: 100%;">
+<img src="LETTUCE/LETTUCE_project_title_image.png" alt="Project Title" style="display: block; margin: auto; width: 100%;">
