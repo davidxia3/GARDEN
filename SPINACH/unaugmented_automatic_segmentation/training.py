@@ -98,11 +98,11 @@ model.summary()
 history = model.fit(X_train, y_train, 
                     batch_size=16, 
                     verbose=1, 
-                    epochs=25, 
+                    epochs=50, 
                     validation_data=(X_test, y_test), 
                     shuffle=False)
 
-model.save('SPINACH/unaugmented_automatic_segmentation/models/v1u.hdf5')
+model.save('SPINACH/unaugmented_automatic_segmentation/models/v3u_epoch-50.hdf5')
 
 loss = history.history['loss']
 val_loss = history.history['val_loss']

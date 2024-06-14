@@ -3,11 +3,11 @@ import cv2
 import numpy as np
 from tensorflow.keras.models import load_model
 
-model_path = 'SPINACH/unaugmented_automatic_segmentation/models/v1u.hdf5'
+model_path = 'SPINACH/unaugmented_automatic_segmentation/models/v3u_epoch-50.hdf5'
 
 input_dir = 'SPINACH/unaugmented_automatic_segmentation/preprocessing_images'
 
-output_dir = 'SPINACH/unaugmented_automatic_segmentation/masks/v1u_masks'
+output_dir = 'SPINACH/unaugmented_automatic_segmentation/masks/v3u_masks'
 
 os.makedirs(output_dir, exist_ok=True)
 
