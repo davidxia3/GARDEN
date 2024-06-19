@@ -30,7 +30,7 @@ def create_png_cutout(image_path, mask_path, output_path):
         print(f"PNG cutout saved to {output_path}")
 
 
-version = "v3"
+version = "v6"
 
 image_dir = "SPINACH/unaugmented_automatic_segmentation/preprocessing_images"
 mask_dir = "SPINACH/unaugmented_automatic_segmentation/masks/" + version + "u_masks"

@@ -92,17 +92,17 @@ IMG_CHANNELS = image_dataset.shape[3]
 input_shape = (IMG_HEIGHT, IMG_WIDTH, IMG_CHANNELS)
 
 model = build_unet(input_shape, n_classes=1)
-model.compile(optimizer=Adam(learning_rate=1e-3), loss='binary_crossentropy', metrics=['accuracy'])
+model.compile(optimizer=Adam(learning_rate=1e-4), loss='binary_crossentropy', metrics=['accuracy'])
 model.summary()
 
 history = model.fit(X_train, y_train, 
-                    batch_size=16, 
+                    batch_size=32, 
                     verbose=1, 
-                    epochs=50, 
+                    epochs=25, 
                     validation_data=(X_test, y_test), 
                     shuffle=False)
 
-model.save('SPINACH/unaugmented_automatic_segmentation/models/v3u_epoch-50.hdf5')
+model.save('SPINACH/unaugmented_automatic_segmentation/models/v7u_lr-4_bs-32.hdf5')
 
 loss = history.history['loss']
 val_loss = history.history['val_loss']
