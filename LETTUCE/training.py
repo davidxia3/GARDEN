@@ -54,11 +54,11 @@ def create_html(df, output_file):
 data = []
 columns = ['version', 'num_layers', 'dropout', 'optimizer', 'batch_size', 'epoch', 'loss', 'accuracy', 'loss_graph', 'accuracy_graph', 'confusion_matrix', 'ROC_curve']
 
-image_directories = ['SPINACH/unaugmented_automatic_segmentation/cutouts/v1u_cutouts', 'SPINACH/unaugmented_automatic_segmentation/cutouts/v2u_cutouts', 'SPINACH/unaugmented_automatic_segmentation/cutouts/v3u_cutouts']
+image_directories = ['SPINACH/unaugmented_automatic_segmentation/cutouts/v3u_cutouts', 'SPINACH/unaugmented_automatic_segmentation/cutouts/v4u_cutouts', 'SPINACH/unaugmented_automatic_segmentation/cutouts/v6u_cutouts']
 layers = [2]
-dropouts = [0.75]
+dropouts = [0.8]
 optimizers = ['adam']
-batch_sizes = [128]
+batch_sizes = [64]
 epochs = [15]
 
 combinations = itertools.product(image_directories, layers, dropouts, optimizers, batch_sizes, epochs)
@@ -167,4 +167,4 @@ for combination in combinations:
     data.append(model_data)
 
 df = pd.DataFrame(data, columns=columns)
-create_html(df, 'LETTUCE/unaugmented_models/performance/performance_7u.html')
+create_html(df, 'LETTUCE/unaugmented_models/performance/performance_8u.html')
