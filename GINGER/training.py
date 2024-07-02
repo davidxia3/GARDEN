@@ -14,12 +14,11 @@ def load_images_from_directory(directory, img_size=(256, 256)):
     images = []
     labels = []
     for filename in os.listdir(directory):
-        if filename.endswith('.jpg'):  # Modify based on your image formats
+        if filename.endswith('.jpg'): 
             img = cv2.imread(os.path.join(directory, filename))
             img = cv2.resize(img, img_size)
             img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
             images.append(img)
-            # Assuming the label is part of the filename before an underscore or any delimiter you choose
             label_string = filename.split("_")[1]
             label=1
             if label_string == "healthy":
