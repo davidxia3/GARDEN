@@ -54,7 +54,7 @@ def create_html(df, output_file):
 data = []
 columns = ['version', 'num_layers', 'dropout', 'optimizer', 'batch_size', 'epoch', 'loss', 'accuracy', 'loss_graph', 'accuracy_graph', 'confusion_matrix', 'ROC_curve']
 
-image_directories = ['SPINACH/unaugmented_automatic_segmentation/cutouts/v3u_cutouts', 'SPINACH/unaugmented_automatic_segmentation/cutouts/v4u_cutouts', 'SPINACH/unaugmented_automatic_segmentation/cutouts/v6u_cutouts']
+image_directories = ['SPINACH/unaugmented_automatic_segmentation/cutouts/v3u_cutouts']
 layers = [2]
 dropouts = [0.8]
 optimizers = ['adam']
@@ -166,5 +166,7 @@ for combination in combinations:
     model_data = [version, num_layers, dropout, opt, bs, ep, loss, accuracy, loss_graph, accuracy_graph, confusion_matrix_graph, roc_curve_graph]
     data.append(model_data)
 
+    model.save('LETTUCE/model_' + str(counter) + '.h5')
+
 df = pd.DataFrame(data, columns=columns)
-create_html(df, 'LETTUCE/unaugmented_models/performance/performance_8u.html')
+create_html(df, 'LETTUCE/unaugmented_models/performance/performance_9u.html')
