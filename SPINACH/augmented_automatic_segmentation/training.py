@@ -1,14 +1,11 @@
 import tensorflow as tf
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Conv2D, MaxPooling2D, UpSampling2D, concatenate, Conv2DTranspose, BatchNormalization, Dropout, Lambda
+from tensorflow.keras.layers import Input, Conv2D,Conv2DTranspose, BatchNormalization
 from tensorflow.keras.optimizers import Adam
 from tensorflow.keras.layers import Activation, MaxPool2D, Concatenate
 from sklearn.model_selection import train_test_split
-from sklearn.preprocessing import MinMaxScaler
-import os
 import cv2
-from PIL import Image
 import numpy as np
 from matplotlib import pyplot as plt
 import glob
