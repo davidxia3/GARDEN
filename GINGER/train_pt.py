@@ -5,21 +5,22 @@ import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
-import torchvision.datasets as datasets
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset, DataLoader
-from torch.utils.tensorboard import SummaryWriter
 from tqdm import tqdm
 from utils import gradient_penalty
 from model import Discriminator, Generator, initialize_weights
 
-device = "cuda" if torch.cuda.is_available() else "cpu"
-cuda_available = torch.cuda.is_available()
+# device = "cuda" if torch.cuda.is_available() else "cpu"
+# cuda_available = torch.cuda.is_available()
+
+mps_available = torch.backends.mps.is_available()
+device = torch.device("mps" if mps_available else "cpu")
 
 
-print(f"Using CUDA: {cuda_available}")
+# print(f"Using CUDA: {cuda_available}")
 print(f"Device: {device}")
-assert device=="cuda"
+# assert device=="cuda"
 
 LEARNING_RATE = 1e-4
 BATCH_SIZE = 8
@@ -28,7 +29,7 @@ CHANNELS_IMG = 3
 NUM_CLASSES = 2
 GEN_EMBEDDING = 100
 Z_DIM = 100
-NUM_EPOCHS = 100
+NUM_EPOCHS = 1000
 FEATURES_CRITIC = 16
 FEATURES_GEN = 16
 CRITIC_ITERATIONS = 5
@@ -78,7 +79,7 @@ transforms = transforms.Compose(
     ]
 )
 
-dataset = ImageDataset(root_dir="../SPINACH/unaugmented_automatic_segmentation/cutouts/v3u_cutouts", transform=transforms)
+dataset = ImageDataset(root_dir="SPINACH/unaugmented_automatic_segmentation/cutouts/v3u_cutouts", transform=transforms)
 loader = DataLoader(
     dataset,
     batch_size=BATCH_SIZE,
@@ -95,8 +96,6 @@ opt_gen = optim.Adam(gen.parameters(), lr=LEARNING_RATE, betas=(0.0, 0.9))
 opt_critic = optim.Adam(critic.parameters(), lr=LEARNING_RATE, betas=(0.0, 0.9))
 
 fixed_noise = torch.randn(32, Z_DIM, 1, 1).to(device)
-writer_real = SummaryWriter(f"logs/GAN_GARDEN/real")
-writer_fake = SummaryWriter(f"logs/GAN_GARDEN/fake")
 step = 0
 
 gen.train()
@@ -139,9 +138,6 @@ for epoch in range(NUM_EPOCHS):
                 img_grid_real = torchvision.utils.make_grid(real[:32], normalize=True)
                 img_grid_fake = torchvision.utils.make_grid(fake[:32], normalize=True)
 
-                writer_real.add_image("Real", img_grid_real, global_step=step)
-                writer_fake.add_image("Fake", img_grid_fake, global_step=step)
-
             step += 1
 
 
@@ -149,11 +145,11 @@ for epoch in range(NUM_EPOCHS):
 torch.save({
     'model_state_dict': gen.state_dict(),
     'optimizer_state_dict': opt_gen.state_dict(),
-}, 'generator.pth')
+}, 'GINGER/generator5_epoch-1000.pth')
 
 torch.save({
     'model_state_dict': critic.state_dict(),
     'optimizer_state_dict': opt_critic.state_dict(),
-}, 'discriminator.pth')
+}, 'GINGER/discriminator5_epoch-1000.pth')
 
 print("Models saved successfully.")
